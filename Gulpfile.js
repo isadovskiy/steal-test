@@ -14,20 +14,14 @@ gulp.task('prod-connect', function () {
 });
 
 gulp.task('prod', function () {
-	fs.writeFileSync('./bundles/all/all.js', '' +
-		'define(["' + ['scripts/modules/hello'].join('", "') + '"], function () {});'
-	);
 	require('steal-tools').build(
 		{
 			main:			'all',
 			config:			'./bower.json!bower',
 			bundlesPath:	'./src/dists/',
-			paths: (function () {
-				var paths = {};
-
-				paths['all'] = './bundles/all/all.js';
-				return paths;
-			})()
+			paths: {
+				'all': './src/bundles/all/all.js'
+			}
 		},
 		{
 			bundle: ['all'],
