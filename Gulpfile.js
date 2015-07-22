@@ -16,15 +16,11 @@ gulp.task('prod-connect', function () {
 gulp.task('prod', function () {
 	require('steal-tools').build(
 		{
-			main:			'all',
+			main:			['scripts/main'],
 			config:			'./bower.json!bower',
-			bundlesPath:	'./src/dists/',
-			paths: {
-				'all': './src/bundles/all/all.js'
-			}
+			bundlesPath:	'./src/dists/'
 		},
 		{
-			bundle: ['all'],
 			sourceMaps: false,
 			bundleSteal: true,
 			debug: false,
