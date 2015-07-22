@@ -12348,7 +12348,7 @@ define('scripts/base/app', ['can/construct/construct'], function () {
         init: function () {
             console.log('Hello, world!');
         }
-    });
+    })();
 });
 /*can/control/control*/
 define('can/control/control', [
@@ -17103,8 +17103,8 @@ define('can/view/stache/stache', [
 });
 /*can/view/stache/system*/
 System.set('can/view/stache/system', System.newModule({}));
-/*can/util/array/makeArray*/
-System.set('can/util/array/makeArray', System.newModule({}));
+/*can/util/domless/domless*/
+System.set('can/util/domless/domless', System.newModule({}));
 /*src/templates/hello/main.hbs!can/view/stache/system*/
 define('src/templates/hello/main.hbs!can/view/stache/system', ['can/view/stache/stache'], function (stache) {
     return stache([
@@ -17144,25 +17144,63 @@ define('src/templates/hello/main.hbs!can/view/stache/system', ['can/view/stache/
         }
     ]);
 });
-/*can/util/domless/domless*/
-System.set('can/util/domless/domless', System.newModule({}));
+/*can/util/array/makeArray*/
+System.set('can/util/array/makeArray', System.newModule({}));
+/*can/construct/super/super*/
+define('can/construct/super/super', [
+    'can/util/util',
+    'can/construct/construct'
+], function (can, Construct) {
+    var isFunction = can.isFunction, fnTest = /xyz/.test(function () {
+            return this.xyz;
+        }) ? /\b_super\b/ : /.*/, getset = [
+            'get',
+            'set'
+        ], getSuper = function (base, name, fn) {
+            return function () {
+                var tmp = this._super, ret;
+                this._super = base[name];
+                ret = fn.apply(this, arguments);
+                this._super = tmp;
+                return ret;
+            };
+        };
+    can.Construct._defineProperty = function (addTo, base, name, descriptor) {
+        var _super = Object.getOwnPropertyDescriptor(base, name);
+        if (_super) {
+            can.each(getset, function (method) {
+                if (isFunction(_super[method]) && isFunction(descriptor[method])) {
+                    descriptor[method] = getSuper(_super, method, descriptor[method]);
+                } else if (!isFunction(descriptor[method])) {
+                    descriptor[method] = _super[method];
+                }
+            });
+        }
+        Object.defineProperty(addTo, name, descriptor);
+    };
+    can.Construct._overwrite = function (addTo, base, name, val) {
+        addTo[name] = isFunction(val) && isFunction(base[name]) && fnTest.test(val) ? getSuper(base, name, val) : val;
+    };
+    return can;
+});
 /*scripts/modules/hello*/
 define('scripts/modules/hello', [
     'scripts/base/app',
     'can/control/control',
     'src/templates/hello/main.hbs!',
-    'jquery/jquery'
-], function (App, Control, view, jQuery) {
+    'jquery/jquery',
+    'can/construct/super/super'
+], function (App, Control, view, $) {
     return Control.extend({
         init: function () {
-            this.element.append(view({ msg: jQuery.fn.jquery }));
+            this._super();
+            this.element.append(view({ msg: $.fn.jquery }));
         }
     });
 });
-/*all*/
-define('all', ['scripts/modules/hello'], function () {
-});
+/*scripts/main*/
+define('scripts/main', ['scripts/modules/hello']);
 /*[import-main-module]*/
 System.import('bower.json!bower').then(function() {
-System.import('all'); 
+System.import('scripts/main'); 
 });
