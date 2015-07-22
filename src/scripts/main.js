@@ -1,0 +1,1 @@
+steal('scripts/modules/hello.js');

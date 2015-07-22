@@ -3,5 +3,5 @@ steal('can/construct/', function () {
 		init: function () {
 			console.log('Hello, world!');
 		}
-	});
+	})();
 });
