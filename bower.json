@@ -20,9 +20,12 @@
   "system": {
     "paths": {
       "can/*": "./bower_components/canjs/steal/can/*.js",
-      "jquery/jquery": "./bower_components/jquery/dist/jquery.js",
+      "jquery": "./bower_components/jquery/dist/jquery.js",
       "scripts/*": "./src/scripts/*.js"
     },
+	"map": {
+	  "jquery/jquery": "./bower_components/jquery/dist/jquery"
+	},
     "ext": {
       "hbs": "can/view/stache/system"
     },
