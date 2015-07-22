@@ -17104,10 +17104,10 @@ define('can/view/stache/stache', [
 });
 /*can/view/stache/system*/
 System.set('can/view/stache/system', System.newModule({}));
-/*can/util/domless/domless*/
-System.set('can/util/domless/domless', System.newModule({}));
 /*can/util/array/makeArray*/
 System.set('can/util/array/makeArray', System.newModule({}));
+/*can/util/domless/domless*/
+System.set('can/util/domless/domless', System.newModule({}));
 /*src/templates/hello/main.hbs!can/view/stache/system*/
 define('src/templates/hello/main.hbs!can/view/stache/system', ['can/view/stache/stache'], function (stache) {
     return stache([
