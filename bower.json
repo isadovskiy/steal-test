@@ -24,7 +24,7 @@
       "scripts/*": "./src/scripts/*.js"
     },
 	"map": {
-	  "jquery/jquery": "./bower_components/jquery/dist/jquery"
+	  "jquery/jquery": "jquery"
 	},
     "ext": {
       "hbs": "can/view/stache/system"
