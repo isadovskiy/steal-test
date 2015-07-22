@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<script src="/dists/all.js"></script>
+</head>
+<body>
+	<script>
+		steal('scripts/modules/hello.js', function (Hello) {
+			new Hello(document.getElementsByTagName('body')[0]);
+		});
+	</script>
+</body>
+</html>

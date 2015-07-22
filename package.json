@@ -1,0 +1,17 @@
+{
+  "name": "test-steal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Frog Froggy <frog-froggy1@yandex.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.8.0",
+    "gulp": "^3.9.0",
+    "steal": "^0.10.5",
+    "steal-tools": "^0.10.7"
+  }
+}
