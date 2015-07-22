@@ -7,6 +7,11 @@
 </head>
 <body>
 	<script>
+		/*steal.config({
+			ext: {
+				hbs: 'can/view/stache/system'
+			}
+		});*/
 		steal('scripts/modules/hello.js', function (Hello) {
 			new Hello(document.getElementsByTagName('body')[0]);
 		});

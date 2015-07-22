@@ -14,35 +14,22 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-	"canjs": "~2.2.6",
-    "steal": "~0.10.5"
+    "steal": "~0.10.5",
+    "canjs": "2.3.0-pre.1"
   },
   "system": {
-	"paths": {
-	  "can": "./bower_components/canjs/steal/can/can.js",
-	  "can/*": "./bower_components/canjs/steal/can/*.js",
-	  "jquery": "./bower_components/jquery/dist/jquery.js",
-	  "jquery-dist": "./src/jquery-dist.js",
-	  "scripts/*": "./src/scripts/*.js"
-	},
-	"map": {
-	  "jquery/jquery": "./bower_components/jquery/dist/jquery"
-	},
-	"ext": {
-	  "stache": "can/view/stache/system"
-	},
-	"meta": {
-	  "jquery": {
-		"format": "global"
-	  },
-	  "jquery-dist": {
-		"format": "global"
-	  }
-	},
-	"buildOptions": {
-	  "map": {
-		"can/util/util": "can/util/domless/domless"
-	  }
-	}
+    "paths": {
+      "can/*": "./bower_components/canjs/steal/can/*.js",
+      "jquery/jquery": "./bower_components/jquery/dist/jquery.js",
+      "scripts/*": "./src/scripts/*.js"
+    },
+    "ext": {
+      "hbs": "can/view/stache/system"
+    },
+    "buildConfig": {
+      "map": {
+        "can/util/util": "can/util/domless/domless"
+      }
+    }
   }
 }

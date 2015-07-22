@@ -1,9 +1,7 @@
-steal('scripts/base/app.js', 'can', 'can/construct/super/', 'jquery-dist.js', function (App, can, canSuper, $) {
-	return App.extend({
+steal('scripts/base/app.js', 'can/control/', 'src/templates/hello/main.hbs!', 'jquery', function (App, Control, view, jQuery) {
+	return Control.extend({
 		init: function () {
-			this._super();
-			console.log($.fn.jquery);
-			can.$('body').append(App.secret);
+			this.element.append(view({msg: jQuery.fn.jquery}));
 		}
 	});
 });
