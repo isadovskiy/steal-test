@@ -5823,14 +5823,15 @@ define('bower.json!bower', [
     loader.config({
         'paths': {
             'can/*': './bower_components/canjs/steal/can/*.js',
-            'jquery/jquery': './bower_components/jquery/dist/jquery.js',
+            'jquery': './bower_components/jquery/dist/jquery.js',
             'scripts/*': './src/scripts/*.js'
         },
+        'map': { 'jquery/jquery': './bower_components/jquery/dist/jquery' },
         'ext': { 'hbs': 'can/view/stache/system' },
         'buildConfig': { 'map': { 'can/util/util': 'can/util/domless/domless' } }
     });
 });
-/*jquery/jquery*/
+/*./bower_components/jquery/dist/jquery*/
 (function (global, factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
         module.exports = global.document ? factory(global, true) : function (w) {
@@ -11333,7 +11334,7 @@ define('bower.json!bower', [
     };
     jQuery.fn.andSelf = jQuery.fn.addBack;
     if (typeof define === 'function' && define.amd) {
-        define('jquery/jquery', [], function () {
+        define('./bower_components/jquery/dist/jquery', [], function () {
             return jQuery;
         });
     }
@@ -17103,6 +17104,8 @@ define('can/view/stache/stache', [
 });
 /*can/view/stache/system*/
 System.set('can/view/stache/system', System.newModule({}));
+/*can/util/domless/domless*/
+System.set('can/util/domless/domless', System.newModule({}));
 /*can/util/array/makeArray*/
 System.set('can/util/array/makeArray', System.newModule({}));
 /*src/templates/hello/main.hbs!can/view/stache/system*/
@@ -17144,8 +17147,6 @@ define('src/templates/hello/main.hbs!can/view/stache/system', ['can/view/stache/
         }
     ]);
 });
-/*can/util/domless/domless*/
-System.set('can/util/domless/domless', System.newModule({}));
 /*scripts/modules/hello*/
 define('scripts/modules/hello', [
     'scripts/base/app',
