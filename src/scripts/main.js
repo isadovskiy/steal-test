@@ -1,1 +1,3 @@
-steal('scripts/modules/hello.js');
+steal('./modules/hello.js', './modules/goodbye.js', function () {
+	console.log('main!');
+});
